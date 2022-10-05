@@ -1,1 +1,1 @@
-export const PRODUCTS_API = "https://game-store12.herokuapp.com/api"
+export const PRODUCTS_API = "http://localhost:5000/products"
