@@ -120,7 +120,7 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
             activeModal={activeModal}
             closeModal={closeModal}
         >
-            <p className='w-full text-center font-semibold text-base py-2 border-b'>{isEdit ? 'Edit Product' : 'Add Edit' }</p>
+            <p className='w-full text-center font-semibold text-base py-2 border-b'>{isEdit ? 'Edit Product' : 'Add Product' }</p>
             <form method='POST' className='mt-4 flex flex-col'>
                 <div className='flex justify-center items-center'>
                     <label className='text-xs w-32 h-32 border rounded-full flex items-center justify-center cursor-pointer mb-4'>
