@@ -20,6 +20,9 @@ module.exports = {
       },
       height: {
         'btn': '40px'
+      },
+      width: {
+        'drop': '110px'
       }
     },
   },

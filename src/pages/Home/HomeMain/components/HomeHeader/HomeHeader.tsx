@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Modal from '../../../../../components/Modals/Modal'
 import AddProductModal from '../../../../../components/Modals/AddProductModal/AddProductModal'
 import Button from '../../../../../components/Button/Button'
+import Sort from '../Sort/Sort'
 
 const HomeHeader: React.FC = () => {
 
@@ -17,7 +17,7 @@ const HomeHeader: React.FC = () => {
                     text='ADD PRODUCT'
                     hover='bg-blue-700'
                 />
-                <p>High → Low</p>
+                <Sort />
             </div>
             <AddProductModal
                 activeModal={activeModal}

@@ -6,41 +6,38 @@ import { PRODUCTS_API } from '../../constants/api/api'
 import AddProductModal from '../../components/Modals/AddProductModal/AddProductModal'
 import axios from 'axios'
 import ProductMain from './ProductMain/ProductMain'
-import { useAppSelector } from '../../redux/hooks'
 
 const Product: React.FC = () => {
     const { product } = useParams()
-    // const [currentProduct, setCurrentProduct] = useState<IProductItem>(
-    //     {
-    //         id: '',
-    //         imageUrl: '',
-    //         name: '',
-    //         description: '',
-    //         count: 0,
-    //         size: {
-    //             width: 0,
-    //             height: 0
-    //         },
-    //         weight: '',
-    //         comments: []
-    //     }
-    // )
+    const [currentProduct, setCurrentProduct] = useState<IProductItem>(
+        {
+            id: '',
+            imageUrl: '',
+            name: '',
+            description: '',
+            count: 0,
+            size: {
+                width: 0,
+                height: 0
+            },
+            weight: '',
+            comments: []
+        }
+    )
     const [activeModal, setActiveModal] = useState(false)
-    const products = useAppSelector(state => state.productSlice.products)
 
-    // useEffect(() => {
-    //     const getProduct = async () => {
-    //         const { data } = await axios.get<IProductItem>(`${PRODUCTS_API}/${product}`)
-    //         setCurrentProduct(data)
-    //     }
+    useEffect(() => {
+        const getProduct = async () => {
+            const { data } = await axios.get<IProductItem>(`${PRODUCTS_API}/${product}`)
+            setCurrentProduct(data)
+        }
 
-    //     getProduct()
-    // }, [activeModal])
-    const currentProduct = products.find(el => el.id === product)
+        getProduct()
+    }, [activeModal])
 
     return (
         <>
-            {currentProduct && (
+            {currentProduct.id && (
                 <>
                     <div className='w-full flex justify-center'>
                         <Container>

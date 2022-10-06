@@ -26,6 +26,7 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
     const dispatch = useAppDispatch()
 
     useEffect(() => {
+
         if (isEdit) {
             const getProduct = async () => {
                 const { data } = await axios.get<IProductItem>(`${PRODUCTS_API}/${id}`)
@@ -35,7 +36,7 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
                     weight,
                     description,
                     size } = data
-                    console.log(size)
+                    console.log(data, id, isEdit)
                 setForm({
                     imageUrl,
                     name,
