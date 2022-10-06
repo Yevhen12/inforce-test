@@ -1,9 +1,10 @@
 project - [https://Yevhen12.github.io/inforce-test/]
 
-Technologies:
-Typescript
-React
-Redux-Toolkit
-Tailwind CSS
-JSON server
-axios
+## Technologies stack
+
+* React
+* TypeScript
+* Redux (Redux Toolkit)
+* Tailind CSS
+* JSON Server
+* axios
