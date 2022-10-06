@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/inforce-test/static/css/main.fb00feb6.css",
+    "main.js": "/inforce-test/static/js/main.c17a8f5e.js",
+    "static/js/245.17f87c5e.chunk.js": "/inforce-test/static/js/245.17f87c5e.chunk.js",
+    "static/js/766.d094167c.chunk.js": "/inforce-test/static/js/766.d094167c.chunk.js",
+    "index.html": "/inforce-test/index.html",
+    "main.fb00feb6.css.map": "/inforce-test/static/css/main.fb00feb6.css.map",
+    "main.c17a8f5e.js.map": "/inforce-test/static/js/main.c17a8f5e.js.map",
+    "245.17f87c5e.chunk.js.map": "/inforce-test/static/js/245.17f87c5e.chunk.js.map",
+    "766.d094167c.chunk.js.map": "/inforce-test/static/js/766.d094167c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fb00feb6.css",
+    "static/js/main.c17a8f5e.js"
+  ]
+}
