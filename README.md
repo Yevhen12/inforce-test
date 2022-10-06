@@ -8,3 +8,6 @@ project - [https://Yevhen12.github.io/inforce-test/]
 * Tailind CSS
 * JSON Server
 * axios
+
+
+NOT FINISHED
