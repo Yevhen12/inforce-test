@@ -1,3 +1,4 @@
+import { updateProduct } from './thunks/updateProduct';
 import { removeProduct } from './thunks/removeProduct';
 import { addProduct } from './thunks/addProduct';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -50,6 +51,15 @@ export const productSlice = createSlice({
             state.status = 'success'
         })
         builder.addCase(removeProduct.rejected, (state: ProductSliceType) => {
+            state.status = 'rejected'
+        })
+        builder.addCase(updateProduct.pending, (state: ProductSliceType) => {
+            state.status = 'loading'
+        })
+        builder.addCase(updateProduct.fulfilled, (state: ProductSliceType) => {
+            state.status = 'success'
+        })
+        builder.addCase(updateProduct.rejected, (state: ProductSliceType) => {
             state.status = 'rejected'
         })
     }

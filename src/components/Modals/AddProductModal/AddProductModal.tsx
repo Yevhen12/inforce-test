@@ -1,23 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { addProduct } from '../../../redux/slices/thunks/addProduct'
 import { useAppDispatch } from '../../../redux/hooks'
 import Modal from '../Modal'
 import { IProductItem } from '../../../interfaces/IProductItem'
 import { ProductModalType } from './types'
 import { FormType } from './types'
+import { updateProduct } from '../../../redux/slices/thunks/updateProduct'
+import { PRODUCTS_API } from '../../../constants/api/api'
+import axios from 'axios'
 
-const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveModal, isEdit, name, count, weight, desc, imageUrl, width, height }) => {
+const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveModal, isEdit, id }) => {
 
-    const [form, setForm] = useState<FormType>(isEdit ?
-        {
-            imageUrl,
-            name,
-            count,
-            weight,
-            desc,
-            width,
-            height
-        } :
+
+    const [form, setForm] = useState<FormType>(
         {
             imageUrl: '',
             name: '',
@@ -29,6 +24,33 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
         }
     )
     const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        if (isEdit) {
+            const getProduct = async () => {
+                const { data } = await axios.get<IProductItem>(`${PRODUCTS_API}/${id}`)
+                const { imageUrl,
+                    name,
+                    count,
+                    weight,
+                    description,
+                    size } = data
+                    console.log(size)
+                setForm({
+                    imageUrl,
+                    name,
+                    count: String(count),
+                    weight,
+                    desc:description,
+                    height:String(size.height),
+                    width:String(size.width)
+
+                })
+            }
+            getProduct()
+        }
+    }, [activeModal])
+
 
     const handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void = (e) => {
         const { value, name } = e.target
@@ -74,6 +96,7 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
             imageUrl: form.imageUrl as string,
             name: form.name as string,
             count: Number(form.count),
+            description: form.desc as string,
             size: {
                 width: Number(form.height),
                 height: Number(form.width)
@@ -81,8 +104,12 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
             weight: form.weight as string,
             comments: []
         }
+        if (isEdit) {
+            dispatch(await updateProduct({...newProduct, id:id as string}))
+        } else {
+            dispatch(await addProduct(newProduct))
+        }
 
-        dispatch(await addProduct(newProduct))
         closeModal()
     }
 
@@ -179,4 +206,4 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
     )
 }
 
-export default AddProductModal
+export default React.memo(AddProductModal)

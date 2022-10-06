@@ -11,4 +11,4 @@ const HomeMain: React.FC = () => {
     )
 }
 
-export default HomeMain
+export default React.memo(HomeMain)

@@ -17,9 +17,6 @@ const ListProducts: React.FC = () => {
         getProducts()
     }, [dispatch])
 
-    console.log(products)
-
-
     const productsArray = useMemo(() => products.map(product => <ProductItem key={product.id} {...product} />), [products])
 
     return (
@@ -31,4 +28,4 @@ const ListProducts: React.FC = () => {
     )
 }
 
-export default ListProducts
+export default React.memo(ListProducts)

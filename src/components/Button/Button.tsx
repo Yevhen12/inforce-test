@@ -19,4 +19,4 @@ const Button: React.FC<ButtonType> = ({ color, action, text, hover }) => {
     )
 }
 
-export default Button
+export default React.memo(Button)

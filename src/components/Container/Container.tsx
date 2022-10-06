@@ -12,4 +12,4 @@ const Container: React.FC<ContainerType> = ({ children }) => {
     )
 }
 
-export default Container
+export default React.memo(Container)

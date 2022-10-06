@@ -27,4 +27,4 @@ const Modal: React.FC<ModalType> = ({ children, width, activeModal, closeModal }
     )
 }
 
-export default Modal
+export default React.memo(Modal)

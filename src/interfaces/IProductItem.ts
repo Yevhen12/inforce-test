@@ -5,6 +5,7 @@ export interface IProductItem {
     imageUrl: string,
     name: string,
     count: number,
+    description: string
     size: {
         width: number,
         height: number
