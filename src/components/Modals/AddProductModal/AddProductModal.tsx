@@ -99,8 +99,8 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
             count: Number(form.count),
             description: form.desc as string,
             size: {
-                width: Number(form.height),
-                height: Number(form.width)
+                width: Number(form.width),
+                height: Number(form.height)
             },
             weight: form.weight as string,
             comments: []
