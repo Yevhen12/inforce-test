@@ -1,1 +1,1 @@
-export const PRODUCTS_API = "http://localhost:5000/products"
+export const PRODUCTS_API = "https://inforce-task1.herokuapp.com/products"
