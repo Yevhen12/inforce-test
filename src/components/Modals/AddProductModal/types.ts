@@ -16,7 +16,7 @@ export type FormType = {
     name: string 
     count: string 
     weight: string 
-    desc: string 
+    description: string 
     imageUrl: string 
     width: string 
     height: string 

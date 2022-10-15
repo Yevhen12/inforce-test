@@ -1,21 +1,11 @@
-import React, { useEffect, useMemo } from 'react'
-import { fetchProducts } from '../../../../../redux/slices/thunks/fetchProducts'
-import { useAppSelector, useAppDispatch } from '../../../../../redux/hooks'
+import React, { useMemo } from 'react'
+import { useAppSelector } from '../../../../../redux/hooks'
 import ProductItem from '../ProductItem/ProductItem'
 
 const ListProducts: React.FC = () => {
 
     const products = useAppSelector(state => state.productSlice.products)
 
-    const dispatch = useAppDispatch()
-
-    useEffect(() => {
-        const getProducts = async () => {
-            dispatch(await fetchProducts())
-        }
-
-        getProducts()
-    }, [dispatch])
 
     const productsArray = useMemo(() => products.map(product => <ProductItem key={product.id} {...product} />), [products])
 

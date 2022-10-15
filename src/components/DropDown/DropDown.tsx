@@ -26,4 +26,4 @@ ${activeModal ? 'block pointer-events-auto' : 'hidden pointer-events-none'}`}></
     )
 }
 
-export default DropDown
+export default React.memo(DropDown)

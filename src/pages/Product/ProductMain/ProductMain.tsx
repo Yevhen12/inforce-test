@@ -5,13 +5,13 @@ import { IProductItem } from '../../../interfaces/IProductItem'
 
 type ProductMainType = {
     product: IProductItem
-    setActiveModal:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ProductMain: React.FC<ProductMainType> = ({ product, setActiveModal }) => {
+const ProductMain: React.FC<ProductMainType> = ({ product }) => {
 
 
-    console.log(product.name, product.description)
+    const [activeModal, setActiveModal] = useState(false)
+
     return (
         <>
             <div className='w-full'>
@@ -34,7 +34,12 @@ const ProductMain: React.FC<ProductMainType> = ({ product, setActiveModal }) => 
                 </div>
             </div>
 
-           
+            <AddProductModal
+                setActiveModal={setActiveModal}
+                activeModal={activeModal}
+                isEdit={true}
+                id={product.id}
+            />
         </>
     )
 }

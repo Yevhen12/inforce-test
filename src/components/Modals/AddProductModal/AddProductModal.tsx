@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { addProduct } from '../../../redux/slices/thunks/addProduct'
-import { useAppDispatch } from '../../../redux/hooks'
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import Modal from '../Modal'
 import { IProductItem } from '../../../interfaces/IProductItem'
 import { ProductModalType } from './types'
@@ -18,37 +18,32 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
             name: '',
             count: '',
             weight: '',
-            desc: '',
+            description: '',
             height: '',
             width: ''
         }
     )
     const dispatch = useAppDispatch()
+    const products = useAppSelector(state => state.productSlice.products)
+    const currentProduct = products.find(el => el.id === id)
+    console.log(currentProduct)
 
     useEffect(() => {
 
-        if (isEdit) {
-            const getProduct = async () => {
-                const { data } = await axios.get<IProductItem>(`${PRODUCTS_API}/${id}`)
-                const { imageUrl,
-                    name,
-                    count,
-                    weight,
-                    description,
-                    size } = data
-                    console.log(data, id, isEdit)
-                setForm({
+
+        if (isEdit && currentProduct) {
+            const { imageUrl, name, count, weight, description, size } = currentProduct
+            setForm(
+                {
                     imageUrl,
                     name,
                     count: String(count),
                     weight,
-                    desc:description,
-                    height:String(size.height),
-                    width:String(size.width)
-
-                })
-            }
-            getProduct()
+                    description,
+                    height: String(size.height),
+                    width: String(size.width)
+                }
+            )
         }
     }, [activeModal])
 
@@ -83,13 +78,13 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
             name: '',
             count: '',
             weight: '',
-            desc: '',
+            description: '',
             height: '',
             width: '',
         })
     }
 
-    const disabled = !form.imageUrl || !form.name || !form.count || !form.weight || !form.desc || !form.height || !form.width
+    const disabled = !form.imageUrl || !form.name || !form.count || !form.weight || !form.description || !form.height || !form.width
 
     const submitFunc: () => Promise<void> = async () => {
         const newProduct: IProductItem = {
@@ -97,7 +92,7 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
             imageUrl: form.imageUrl as string,
             name: form.name as string,
             count: Number(form.count),
-            description: form.desc as string,
+            description: form.description as string,
             size: {
                 width: Number(form.width),
                 height: Number(form.height)
@@ -106,7 +101,7 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
             comments: []
         }
         if (isEdit) {
-            dispatch(await updateProduct({...newProduct, id:id as string}))
+            dispatch(await updateProduct({ ...newProduct, id: id as string }))
         } else {
             dispatch(await addProduct(newProduct))
         }
@@ -120,7 +115,7 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
             activeModal={activeModal}
             closeModal={closeModal}
         >
-            <p className='w-full text-center font-semibold text-base py-2 border-b'>{isEdit ? 'Edit Product' : 'Add Product' }</p>
+            <p className='w-full text-center font-semibold text-base py-2 border-b'>{isEdit ? 'Edit Product' : 'Add Product'}</p>
             <form method='POST' className='mt-4 flex flex-col'>
                 <div className='flex justify-center items-center'>
                     <label className='text-xs w-32 h-32 border rounded-full flex items-center justify-center cursor-pointer mb-4'>
@@ -177,8 +172,8 @@ const AddProductModal: React.FC<ProductModalType> = ({ activeModal, setActiveMod
                 />
 
                 <textarea
-                    name='desc'
-                    value={form.desc}
+                    name='description'
+                    value={form.description}
                     placeholder='Describe product...'
                     className='px-4 py-2 text-sm border rounded mx-4 placeholder:text-sm outline-none resize-none'
                     onChange={(e) => handleChange(e)}
