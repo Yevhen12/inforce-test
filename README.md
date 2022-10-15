@@ -5,6 +5,9 @@ project - [https://Yevhen12.github.io/inforce-test/]
 * React
 * TypeScript
 * Redux (Redux Toolkit)
-* Tailind CSS
+* Tailwind CSS
 * JSON Server
 * axios
+
+
+NOT FINISHED
